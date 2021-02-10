@@ -4,18 +4,18 @@ typehint:
 
 PHONY: test
 test:
-	pytest tests/
+	pytest tests/*.py
 
 .PHONY: lint
 lint:
-	pylint src/ tests/
+	pylint --errors-only --score=y src/ tests/
 
 .PHONY: checklist
-checklist: lint typehint test
+checklist: black lint typehint test
 
 .PHONY: black
 black:
-	black -l 79 *.py
+	black -l 79 src/*.py
 
 .PHONY: clean
 clean: 
